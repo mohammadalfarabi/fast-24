@@ -26,7 +26,6 @@ def nambah(nama, jumlah):
     tstoksekarang = hitungtstok()
     if tstoksekarang + jumlah > max:
         print(f"Gagal menambahkan barang. Total stok akan melebihi kapasitas maksimum ({max}).")
-        print(f"Stok saat ini: {tstoksekarang}, Barang baru: {jumlah}, Total: {tstoksekarang + jumlah}")
         return
 
     indeks = cariib(nama)
