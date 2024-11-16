@@ -47,7 +47,7 @@ def tampilkanterbanyak():
 
 def tampilkantersedikit():
     barang_tersedikit = None
-    stok_tersedikit = float('inf')
+    stok_tersedikit = float('')
 
     for barang in gudang:
         if barang['nama'] is not None and barang['jumlah'] > 0 and barang['jumlah'] < stok_tersedikit:
