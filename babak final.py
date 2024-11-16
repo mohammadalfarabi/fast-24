@@ -5,7 +5,9 @@ print('''Sistem Manajemen Gudang
 4. Distribusi Barang
 0. Keluar''')
 
-gudang = [{'nama': None, 'jumlah': 0} for _ in range(250)]
+max =250
+
+gudang = [{'nama': None, 'jumlah': 0} for _ in range(max)]
 
 def cariib(nama):
     for i, barang in enumerate(gudang):
@@ -13,7 +15,20 @@ def cariib(nama):
             return i
     return -1
 
+def hitungtstok():
+    total = 0
+    for barang in gudang:
+        if barang['nama'] is not None:
+            total += barang['jumlah']
+    return total
+
 def nambah(nama, jumlah):
+    tstoksekarang = hitungtstok()
+    if tstoksekarang + jumlah > max:
+        print(f"Gagal menambahkan barang. Total stok akan melebihi kapasitas maksimum ({max}).")
+        print(f"Stok saat ini: {tstoksekarang}, Barang baru: {jumlah}, Total: {tstoksekarang + jumlah}")
+        return
+
     indeks = cariib(nama)
     if indeks != -1:
         gudang[indeks]['jumlah'] += jumlah
