@@ -27,11 +27,39 @@ def nambah(nama, jumlah):
         print("Gudang sudah penuh. Tidak bisa menambahkan barang baru.")
 
 def tampilkan():
-    barangterf = [barang for barang in gudang if barang['nama'] is not None and barang['jumlah'] > 0]
-    barangteru = sorted(barangterf, key=lambda x: x['jumlah'], reverse=True)
-    print("Daftar barang di gudang:")
-    for barang in barangteru:
-        print(f"Nama: {barang['nama']}, Jumlah: {barang['jumlah']}")
+    print("\nDaftar semua barang di gudang:")
+    for barang in gudang:
+        if barang['nama'] is not None and barang['jumlah'] > 0:
+            print(f"Nama: {barang['nama']}, Jumlah: {barang['jumlah']}")
+
+
+def tampilkanterbanyak():
+    bterbanyak = None
+    sterbanyak = -1  
+
+    for barang in gudang:
+        if barang['nama'] is not None and barang['jumlah'] > 0 and barang['jumlah'] > sterbanyak:
+            bterbanyak = barang
+            sterbanyak = barang['jumlah']
+
+    if bterbanyak:
+        print(f"\nBarang dengan stok terbanyak: Nama: {bterbanyak['nama']}, Jumlah: {bterbanyak['jumlah']}")
+    else:
+        print("\nGudang kosong. Tidak ada barang dengan stok.")
+
+def tampilkantersedikit():
+    barang_tersedikit = None
+    stok_tersedikit = float('inf')
+
+    for barang in gudang:
+        if barang['nama'] is not None and barang['jumlah'] > 0 and barang['jumlah'] < stok_tersedikit:
+            barang_tersedikit = barang
+            stok_tersedikit = barang['jumlah']
+
+    if barang_tersedikit:
+        print(f"\nBarang dengan stok tersedikit: Nama: {barang_tersedikit['nama']}, Jumlah: {barang_tersedikit['jumlah']}")
+    else:
+        print("\nGudang kosong. Tidak ada barang dengan stok.")
 
 def carib(nama):
     indeks = cariib(nama)
@@ -66,7 +94,7 @@ def distribusi(nama, jumlah):
 
 
 while True:
-    menu = input("Pilih menu (1/2/3/4/0): ")
+    menu = input("\nPilih menu (1/2/3/4/0): ")
 
     if menu == '1':
         nama = input("Masukkan nama barang: ")
@@ -74,7 +102,21 @@ while True:
         nambah(nama, jumlah)
 
     elif menu == '2':
-        tampilkan()
+        print("\nMenu Tampilkan Barang")
+        print("1. Tampilkan Semua Barang")
+        print("2. Barang dengan Stok Terbanyak")
+        print("3. Barang dengan Stok Tersedikit")
+
+        pilihlgi = input("Pilih opsi: ")
+
+        if pilihlgi == '1':
+            tampilkan()
+        elif pilihlgi == '2':
+            tampilkanterbanyak()
+        elif pilihlgi == '3':
+            tampilkantersedikit()
+        else:
+            print("Pilihan tidak valid. Kembali ke menu utama.")
 
     elif menu == '3':
         nama = input("Masukkan nama barang yang ingin dicari: ")
