@@ -5,9 +5,7 @@ print('''Sistem Manajemen Gudang
 4. Distribusi Barang
 0. Keluar''')
 
-max = 250
-
-gudang = [{'nama': None, 'jumlah': 0} for _ in range(max)]
+gudang = [{'nama': None, 'jumlah': 0} for _ in range(250)]
 
 def cariib(nama):
     for i, barang in enumerate(gudang):
